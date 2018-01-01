@@ -1,0 +1,13 @@
+body {
+  background-color: pink;
+}
+
+#print {
+  background-color: #1e1e1e;
+  color: white;
+  font-family: monospace;
+  font-size: 24px;
+  width: 90%;
+  margin: auto;
+  min-height: 300px;
+}

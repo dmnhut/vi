@@ -1,0 +1,91 @@
+<html>
+
+<head>
+  <title>my vi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+  <link rel="stylesheet" href="vi.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-12">
+          <textarea id="txta" class="form-control" rows="4"></textarea>
+        </div>
+      </div>
+      <br/>
+      <div row="row">
+        <div class="col-sm-12">
+          <div id="print"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>
+  <script>
+    // "chú chó xù lông ngồi dài cả cổ nhịn đói cho đến tận đêm hôm qua"
+    $(document).ready(function() {
+      $("#txta").change(function() {
+        var vi = {
+          ch: "c",
+          tr: "c",
+          đ: "d",
+          g: "g",
+          gh: "g",
+          ph: "f",
+          c: "k",
+          q: "k",
+          k: "k",
+          ng: "q",
+          ngh: "q",
+          r: "r",
+          s: "s",
+          kh: "x",
+          th: "w",
+          d: "z",
+          gi: "z",
+          r: "z",
+          nh: "n'"
+        };
+        var txt = $("#txta").val();
+        console.log(txt);
+        txt = txt.split("");
+        for (i = 0; i < txt.length; i++) {
+          if (txt[i] === "q") {
+            txt[i] = vi[txt[i]];
+          }
+          if (txt[i] === "c" && txt[i + 1] !== "h") {
+            txt[i] = vi[txt[i]];
+          }
+        }
+        txt = txt.join("");
+        txt = txt.replace(/ch/gi, vi["ch"]);
+        txt = txt.replace(/tr/gi, vi["tr"]);
+        txt = txt.replace(/gh/gi, vi["gh"]);
+        txt = txt.replace(/ph/gi, vi["ph"]);
+        txt = txt.replace(/ng/gi, vi["ng"]);
+        txt = txt.replace(/ngh/gi, vi["ngh"]);
+        txt = txt.replace(/kh/gi, vi["kh"]);
+        txt = txt.replace(/th/gi, vi["th"]);
+        txt = txt.replace(/gi/gi, vi["gi"]);
+        txt = txt.replace(/nh/gi, vi["nh"]);
+        txt = txt.split("");
+        txt = txt.map(function(val) {
+          if (val === "c" || val === "q") {
+            return val;
+          }
+          if (vi[val] !== undefined) {
+            return vi[val];
+          }
+          return val;
+        });
+        txt = txt.join("");
+        console.log(txt);
+        $("#print").html(txt);
+      });
+    });
+  </script>
+</body>
+
+</html>
